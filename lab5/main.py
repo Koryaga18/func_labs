@@ -1,19 +1,16 @@
-# Создание декоратора для мемоизации
 def memoize(func):
-    memo = {}  # Словарь для хранения результатов
+    memo = {}
     def helper(x):
-        if x not in memo:  # Проверка на результат для данного аргумента в словаре
-            memo[x] = func(x)  # Если результат не найден, вызываем исходную функцию и сохраняем результат в словаре
-        return memo[x]  # Возвращаем результат из словаря
-    return helper  # Возвращаем обернутую функцию
+        if x not in memo:
+            memo[x] = func(x) 
+        return memo[x]
+    return helper
 
-# Пример рекурсивной функции, которую мы хотим оптимизировать
-@memoize #Декоратор memoize к функции fibonacci
+
+@memoize
 def fibonacci(n):
-    if n <= 1:  # Базовый случай: если n меньше или равно 1, возвращаем n
+    if n <= 1:
         return n
-    else:  # Выполнение рекурсивного вызова
-        return fibonacci(n-1) + fibonacci(n-2)  # Складываем результаты
-
-# Пример использования
-print(fibonacci(5))  # Вызываем функцию fibonacci с аргументом 5 и печатаем результат
+    else:
+        return fibonacci(n-1) + fibonacci(n-2)
+print(fibonacci(5))
